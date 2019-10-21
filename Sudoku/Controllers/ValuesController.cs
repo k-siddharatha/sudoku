@@ -14,11 +14,11 @@ namespace Sudoku.Controllers
     {
         readonly int[,] board = new int[,]
             {
-            {3, 0, 6, 5, 0, 8, 4, 0, 0},
+            {0, 0, 6, 5, 0, 8, 4, 0, 0},
             {5, 2, 0, 0, 0, 0, 0, 0, 0},
             {0, 8, 7, 0, 0, 0, 0, 3, 1},
             {0, 0, 3, 0, 1, 0, 0, 8, 0},
-            {9, 0, 0, 8, 6, 3, 0, 0, 5},
+            {9, 0, 0, 0, 6, 3, 0, 0, 5},
             {0, 5, 0, 0, 9, 0, 6, 0, 0},
             {1, 3, 0, 0, 0, 0, 2, 5, 0},
             {0, 0, 0, 0, 0, 0, 0, 7, 4},
@@ -28,7 +28,7 @@ namespace Sudoku.Controllers
                                  int row, int col,
                                  int num)
         {
-            // row has the unique (row-clash) 
+            // unique row 
             for (int d = 0; d < board.GetLength(0); d++)
             {
                 // if the number we are trying to 
@@ -148,12 +148,13 @@ namespace Sudoku.Controllers
 
         }
         // GET api/values/5
-        public string Solved()
+        
+        public string get(int id)
         {
-            int N = 9;
-            if (solveSudoku(board, N))
+            // int id = 9;
+            if (solveSudoku(board, id))
             {
-                return ReturnString(board, N);
+                return ReturnString(board, id);
             }
             else
             {

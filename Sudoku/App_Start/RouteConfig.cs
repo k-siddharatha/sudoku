@@ -13,13 +13,7 @@ namespace Sudoku
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            routes.MapRoute(
-                name: "Solved",
-                url: "{controller}/solved",
-                defaults: new { controller = "Values", action = "solved"}
-            );
-            
-            //Route: /Special/12
+           
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
