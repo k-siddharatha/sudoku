@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            margin: 1em auto;
+        }
+
+        td {
+            height: 30px;
+            width: 30px;
+            border: 1px solid;
+            text-align: center;
+        }
+
+            td:first-child {
+                border-left: solid;
+            }
+
+            td:nth-child(3n) {
+                border-right: solid;
+            }
+
+        tr:first-child {
+            border-top: solid;
+        }
+
+        tr:nth-child(3n) td {
+            border-bottom: solid;
+        }
+    </style>
+</head>
+<body onload="unsolved()">
+    <div class="row">
+        <label class="col-md-4 col-md-offset-1"> UnSolved</label>
+        <label class="col-md-4 col-md-offset-2"> Solved</label>
+    </div>
+    <div class="row">
+        <table class="col-md-4 col-md-offset-1" id="myTable"></table>
+        <table class="col-md-4 col-md-offset-2" id="solutionTable"></table>
+    </div>
+    <br>
+
+    <button type="button" onclick="solve()">Play</button>
+
+    <script>
+
+        function unsolved() {
+            var table = document.getElementById("myTable");
+            $.getJSON('https://localhost:44339/api/values', function (result) {
+                console.log(JSON.stringify(result));
+                var count = 0;
+                for (var i = 0; i < 9; i++) {
+                    var row = table.insertRow(i);
+                    for (var j = 0; j < 9; j++) {
+                        var cell1 = row.insertCell(j);
+                        if (result.charAt(count) != 0) {
+                            cell1.innerHTML = result.charAt(count);
+                        } else {
+                            cell1.innerHTML = " ";
+                        }
+                        
+                        count++;
+                    }
+                }
+
+            });
+        }
+
+        function solve() {
+            var table = document.getElementById("solutionTable");
+            $.getJSON('https://localhost:44339/api/values/solved', function (result) {
+                console.log(JSON.stringify(result));
+                var count = 0;
+                for (var i = 0; i < 9; i++) {
+                    var row = table.insertRow(i);
+                    for (var j = 0; j < 9; j++) {
+                        var cell1 = row.insertCell(j);
+                        cell1.innerHTML = result.charAt(count);
+                        count++;
+                    }
+                }
+
+            });
+        }
+    </script>
+
+</body>
+</html>
