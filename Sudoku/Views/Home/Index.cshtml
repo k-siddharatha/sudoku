@@ -8,14 +8,16 @@
         <table class="col-md-4 col-md-offset-2" id="solvedTable"></table>
     </div>
     <br>
+    <div class="row">
+        <button class="col-md-12" id="solveBtn" type="button" onclick="solve();this.hide = true;">Solve</button>
+    </div>
 
-    <button type="button" onclick="solve()">Solve</button>
 
     <script>
         var sudokuN = 9;
-
         function unsolved() {
             var table = document.getElementById("myTable");
+            table.innerHTML = '';
             $.getJSON('https://localhost:44339/api/values', function (result) {
                 console.log(JSON.stringify(result));
                 var count = 0;
@@ -38,7 +40,7 @@
 
         function solve() {
             var table = document.getElementById("solvedTable");
-
+            table.innerHTML = '';
             $.getJSON('https://localhost:44339/api/values/' + sudokuN, function (result) {
                 console.log(JSON.stringify(result));
                 var count = 0;
@@ -52,6 +54,7 @@
                 }
 
             });
+            solveBtn.hidden = true;
         }
     </script>
 

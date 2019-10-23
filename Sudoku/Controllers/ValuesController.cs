@@ -28,32 +28,27 @@ namespace Sudoku.Controllers
                                  int row, int col,
                                  int num)
         {
-            // unique row 
+            // row check 
             for (int d = 0; d < board.GetLength(0); d++)
             {
-                // if the number we are trying to 
-                // place is already present in 
-                // that row, return false; 
+                
                 if (board[row, d] == num)
                 {
                     return false;
                 }
             }
 
-            // column has the unique numbers (column-clash) 
+            // column check
             for (int r = 0; r < board.GetLength(0); r++)
             {
-                // if the number we are trying to 
-                // place is already present in 
-                // that column, return false; 
+                
                 if (board[r, col] == num)
                 {
                     return false;
                 }
             }
 
-            // corresponding square has 
-            // unique number (box-clash) 
+            //box check 
             int sqrt = (int)Math.Sqrt(board.GetLength(0));
             int boxRowStart = row - row % sqrt;
             int boxColStart = col - col % sqrt;
@@ -71,7 +66,7 @@ namespace Sudoku.Controllers
                 }
             }
 
-            // if there is no clash, it's safe 
+            //safe return
             return true;
         }
 
@@ -89,8 +84,8 @@ namespace Sudoku.Controllers
                         row = i;
                         col = j;
 
-                        // we still have some remaining 
-                        // missing values in Sudoku 
+                        
+                        // missing values return false
                         isEmpty = false;
                         break;
                     }
@@ -107,7 +102,7 @@ namespace Sudoku.Controllers
                 return true;
             }
 
-            // else for each-row backtrack 
+            // else for each-row back
             for (int num = 1; num <= n; num++)
             {
                 if (isSafe(board, row, col, num))
@@ -115,7 +110,6 @@ namespace Sudoku.Controllers
                     board[row, col] = num;
                     if (solveSudoku(board, n))
                     {
-                        // print(board, n); 
                         return true;
                     }
                     else
@@ -158,9 +152,8 @@ namespace Sudoku.Controllers
             }
             else
             {
-                Console.Write("No solution");
+                return ("No Solution");
             }
-            return ("No Solution");
         }
     }
 }
