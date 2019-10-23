@@ -1,7 +1,7 @@
 # sudoku
 Sudoku Game
 
-The game is done in following technology stack:
+The game is done using following technology stack:
 C#, ASP.Net, WebAPI MVC, HTML Javascript Jquery bootstrap.
 
 
