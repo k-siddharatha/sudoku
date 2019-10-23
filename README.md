@@ -36,3 +36,11 @@ There are two apis which are written
 2. to solve the initialized board.
 
 have used backtracking algorithm to solve the soduku missing values. 
+
+APIs
+GET/api/values/
+return a preconfigured board.
+
+GET/api/values/?recieveString=customBoard&id=9
+accepts a board in string format and return the result. 
+
