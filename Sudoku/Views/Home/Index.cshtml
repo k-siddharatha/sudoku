@@ -14,12 +14,14 @@
 
 
     <script>
-        var sudokuN = 9;
+    var sudokuN = 9;
+    var sodokuPuzzel = '';
         function unsolved() {
             var table = document.getElementById("myTable");
             table.innerHTML = '';
             $.getJSON('https://localhost:44339/api/values', function (result) {
                 console.log(JSON.stringify(result));
+                sodokuPuzzel = result;
                 var count = 0;
                 for (var i = 0; i < sudokuN; i++) {
                     var row = table.insertRow(i);
@@ -41,7 +43,7 @@
         function solve() {
             var table = document.getElementById("solvedTable");
             table.innerHTML = '';
-            $.getJSON('https://localhost:44339/api/values/' + sudokuN, function (result) {
+            $.getJSON('https://localhost:44339/api/values/query?recieveString='+sodokuPuzzel+'&id=' + sudokuN, function (result) {
                 console.log(JSON.stringify(result));
                 var count = 0;
                 for (var i = 0; i < sudokuN; i++) {

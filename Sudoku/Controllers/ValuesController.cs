@@ -134,6 +134,30 @@ namespace Sudoku.Controllers
                 return sb.ToString();
         }
 
+        private int[,] RecieveString(string recievedBoard, int N)
+        {
+            int[,] returnBoard = new int[N,N];
+            int count = 0;
+            char[] digits = recievedBoard.ToCharArray();
+            try
+            {
+                for (int r = 0; r < N; r++)
+                {
+                    for (int d = 0; d < N; d++)
+                    {
+                        returnBoard[r, d] = System.Convert.ToInt32(digits[count].ToString());
+                        count++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            return returnBoard;
+        }
+
         // GET api/values
         public string Get()
         {
@@ -143,12 +167,13 @@ namespace Sudoku.Controllers
         }
         // GET api/values/5
         
-        public string get(int id)
+        public string get(string recieveString,int id)
         {
-            // int id = 9;
-            if (solveSudoku(board, id))
+            int [,] solvedBoard = RecieveString(recieveString, id);
+
+            if (solveSudoku(solvedBoard, id))
             {
-                return ReturnString(board, id);
+                return ReturnString(solvedBoard, id);
             }
             else
             {
