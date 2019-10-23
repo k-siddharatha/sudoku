@@ -35,3 +35,4 @@ There are two apis which are written
 1. to initialize the board
 2. to solve the initialized board.
 
+have used backtracking algorithm to solve the soduku missing values. 
